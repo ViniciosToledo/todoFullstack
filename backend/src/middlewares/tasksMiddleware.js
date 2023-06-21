@@ -1,4 +1,4 @@
-const validateBody = (req, res, next) => {
+const validateFildTitle = (req, res, next) => {
     const { body } = req
 
     if (body.title === undefined){
@@ -12,4 +12,18 @@ const validateBody = (req, res, next) => {
     next()
 }
 
-module.exports = {validateBody}
+const validateFildStatus = (req, res, next) => {
+    const { body } = req
+
+    if (body.status === undefined){
+        return res.status(400).json({message:'The field "status" is required'})
+    }
+
+    if (body.status === ""){
+        return res.status(400).json({message:'status cannot be empty'})
+    }
+
+    next()
+}
+
+module.exports = {validateFildTitle, validateFildStatus}
